@@ -34,7 +34,7 @@ docker pull aabdulsatarov/nodejs2024q1-service
 
 ## Creating and launching docker container
 ```
-docker-compose up --build -d
+docker-compose up -d
 ```
 
 ## Stopping docker container
@@ -56,9 +56,13 @@ After application running open new terminal and enter:
 To run all tests without authorization
 
 ```
-npm run test
+npm run test 
 ```
+or 
 
+```
+docker exec -it homelib sh -c "npm run test"
+```
 To run only one of all test suites
 
 ```
