@@ -62,7 +62,6 @@ describe('Favorites (e2e)', () => {
       const response = await unauthorizedRequest
         .get(favoritesRoutes.getAll)
         .set(commonHeaders);
-
       expect(response.status).toBe(StatusCodes.OK);
       expect(response.body).toBeInstanceOf(Object);
       expect(response.body).toHaveProperty('artists');
@@ -185,7 +184,6 @@ describe('Favorites (e2e)', () => {
       const trackSearchRes = responseAfterDeletion.body.tracks.find(
         (track) => track.id === trackId,
       );
-
       expect(artistSearchRes).toBeUndefined();
       expect(albumSearchRes).toBeUndefined();
       expect(trackSearchRes).toBeUndefined();

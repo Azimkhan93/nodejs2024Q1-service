@@ -8,24 +8,46 @@
 ## Downloading
 
 ```
-git clone {repository URL}
+git clone https://github.com/Azimkhan93/nodejs2024Q1-service.git
 ```
 
+## Switching to the branch
+```
+git checkout hl2
+```
 ## Installing NPM modules
 
 ```
 npm install
 ```
 
-## Running application
+## Logging in Docker
 
 ```
-npm start
+docker login
 ```
 
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
+## Getting Docker image from Dockerhub
+```
+docker pull aabdulsatarov/nodejs2024q1-service
+```
+
+## Creating and launching docker container
+```
+docker-compose up -d
+```
+
+## Stopping docker container
+```
+docker-compose down
+```
+
+## Scanning for vulnerabilities 
+
+```
+npm run docker:scan
+```
+
 
 ## Testing
 
@@ -34,9 +56,13 @@ After application running open new terminal and enter:
 To run all tests without authorization
 
 ```
-npm run test
+npm run test 
 ```
+or 
 
+```
+docker exec -it homelib sh -c "npm run test"
+```
 To run only one of all test suites
 
 ```

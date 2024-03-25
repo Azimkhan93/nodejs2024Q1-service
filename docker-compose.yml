@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aabdulsatarov/nodejs2024q1-service:latest
+    container_name: homelib
+    networks:
+      - user_defined
+    restart: always
+    env_file:
+      - .env.docker
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ./src:/app/src
+      - app_logs:/log/app
+  postgres:
+    build:
+        context: ./src/
+        dockerfile: Dockerfile
+    env_file:
+      - .env
+    container_name: postgres_db
+    networks:
+      - user_defined
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_logs:/var/log/postgresql
+
+volumes:
+  app_logs:
+  postgres_data:
+  postgres_logs:
+networks:
+  user_defined:
+    name: user_defined
+    driver: bridge
